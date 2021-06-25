@@ -1,0 +1,344 @@
+<!doctype html>
+<!--
+* Tabler - Premium and Open Source dashboard template with responsive and high quality UI.
+* @version 1.0.0-beta3
+* @link https://tabler.io
+* Copyright 2018-2021 The Tabler Authors
+* Copyright 2018-2021 codecalm.net Paweł Kuna
+* Licensed under MIT (https://github.com/tabler/tabler/blob/master/LICENSE)
+-->
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Informasi mengenai tsunami di indonesia</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
+
+    <!-- Favicons -->
+    <link href="img/logo.png" rel="icon">
+    <link href="img/logo.png" rel="apple-touch-icon">
+
+    <!-- Libraries CSS Files -->
+    <link href="lib/flat-ui/css/flat-ui.css" rel="stylesheet">
+    <!-- Bootstrap CSS File -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+
+    </style>
+    <!-- Main Stylesheet File -->
+    <link href="css/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+        integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+        crossorigin="" />
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+        integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+        crossorigin=""></script>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Dashboard - Tabler - Premium and Open Source dashboard template with responsive and high quality UI.</title>
+    <link rel="preconnect" href="https://www.google-analytics.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+    <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin>
+    <!-- CSS files -->
+    <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> -->
+    <link href="./css/tabler.min.css?1620587987" rel="stylesheet" />
+    <link href="./css/tabler-flags.min.css?1620587987" rel="stylesheet" />
+    <link href="./css/tabler-payments.min.css?1620587987" rel="stylesheet" />
+    <link href="./css/tabler-vendors.min.css?1620587987" rel="stylesheet" />
+
+    <link href="./css/demo.min.css?1620587987" rel="stylesheet" />
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/data.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+    <script src="https://code.highcharts.com/highcharts-3d.js"></script>
+    <link href="lib/flat-ui/css/flat-ui.css" rel="stylesheet">
+    <!-- Bootstrap CSS File -->
+
+    <script src="./js/refrensi.js"></script>
+
+    <style>
+        #container {
+            height: 400px;
+        }
+
+        .highcharts-figure,
+        .highcharts-data-table table {
+            min-width: 310px;
+            max-width: 800px;
+            margin: 1em auto;
+        }
+
+        #datatable {
+            font-family: Verdana, sans-serif;
+            border-collapse: collapse;
+            border: 1px solid #EBEBEB;
+            margin: 10px auto;
+            text-align: center;
+            width: 100%;
+            max-width: 500px;
+        }
+
+        #datatable caption {
+            padding: 1em 0;
+            font-size: 1.2em;
+            color: #555;
+        }
+
+        #datatable th {
+            font-weight: 600;
+            padding: 0.5em;
+        }
+
+        #datatable td,
+        #datatable th,
+        #datatable caption {
+            padding: 0.5em;
+        }
+
+        #datatable thead tr,
+        #datatable tr:nth-child(even) {
+            background: #f8f8f8;
+        }
+
+        #datatable tr:hover {
+            background: #f1f7ff;
+        }
+    </style>
+
+</head>
+
+<body>
+    <!-- Fixed navbar -->
+    <div class="navbar navbar-default navbar-fixed-top"
+        style="font-family: Helvetica Neue,Helvetica,Arial,sans-serif ; padding: 0px; position: fixed; background-color: #f8f8f8;border-color: #e7e7e7;">
+        <div class="container-bs">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+
+                <a style="float: left;" href="#">
+                    <img style="margin: 10px;" src="img/logo.png " alt="" width="50">
+                </a>
+                <h3 class="navbar-kiri" href="">Informasi Tsunami</h3>
+            </div>
+
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li class="dropdown">
+                        <a href="./">Home</a>
+                    </li>
+                    <li><a href="profile.html">Profile</a></li>
+                    <li><a href="mitigasi.html">SiMiTzu</a></li>
+                    <li><a href="peta.html">Peta</a></li>
+                    <li class="dropdown active">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Data <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="statistik.html">Statistik</a></li>
+                            <li class="active"><a href="refrensi.html">Refrensi</a></li>
+                        </ul>
+                    </li>
+
+                    <!-- <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Pages <b class="caret"></b></a>
+            <ul class="dropdown-menu">
+              <li><a href="services.html">Services</a></li>
+              <li><a href="pricing.html">Pricing Tables</a></li>
+              <li><a href="testimonials.html">Testimonials</a></li>
+              <li><a href="team.html">Our Team</a></li>
+              <li><a href="blog.html">Blog</a></li>
+              <li><a href="blog-single.html">Blog Article</a></li>
+              <li><a href="faq.html">FAQ</a></li>
+              <li><a href="404.html">404</a></li>
+            </ul>
+          </li>
+          <li class="dropdown active">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Portfolios <b class="caret"></b></a>
+            <ul class="dropdown-menu">
+              <li><a href="portfolio.html">Portfolio</a></li>
+              <li><a href="portfolio4.html">Portfolio 4 Columns</a></li>
+              <li class="active"><a href="project-single.html">Single Project</a></li>
+            </ul>
+          </li> -->
+                </ul>
+            </div>
+        </div>
+        <!--/.nav-collapse -->
+    </div>
+    <div class="page-body">
+        <div class="container-xl" style="max-width: 100%;">
+            <div class="row row-deck row-cards">
+
+                <div class="col-lg-12">
+                    <div class="card ">
+                        <div class="card-body">
+                            <div>
+
+                                <div>
+                                    <h4 style="text-align: center;"><b>Refrensi</b> </h4>
+                                </div>
+
+
+                                <div style="  width: 50px !important; 
+                                float: right; 
+                                margin-right: 20px;"><a href="./data/Refrensi_Kelompok 5.xlsx"><img
+                                            src="./img/icons/download2.png" alt="download"></a>
+                                </div>
+                                <a href="./data/Data Tsunami Indonesia_Kelompok 5.xlsx">
+                                    <div class="download">
+                                        <h3 style="float: right; margin-top: 15px;  font-size: 20px;"><b>Download</b>
+                                        </h3>
+                                    </div>
+                                </a>
+                            </div>
+                            <div id="dvTable" class="table-responsive" style="max-height: 500px; overflow-y: scroll;">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+    <!-- <footer class="footer footer-transparent d-print-none">
+            <div class="container">
+                <div class="row text-center align-items-center flex-row-reverse">
+                   
+                </div>
+            </div>
+        </footer> -->
+    </div>
+    </div>
+    <div id="f">
+        <div class="container-bs">
+            <div class="row">
+
+                <br>
+
+                <div class="col-lg-4">
+                    <p>Website Informasi Tsunami</p>
+                    <p><small>merupakan salah satu website yang memberikan edukasi mengenai tsunami. Hasil yang
+                            diharapkan dengan
+                            adanya website ini dapat membantu masyarakat lebih memahami tsunami</small></p>
+                </div>
+
+
+                <div class="col-lg-4">
+                    <p>Hubungi Kami</p>
+                    <p><small>
+                        Kelompok 5<br />
+                        Geology<br />
+                        Universitas Indonesia
+                      </small></p>
+                  </div>
+
+                <div class="col-lg-4">
+                    <p>OUR NEWSLETTER</p>
+                    <p><small>Each month we collect the best stuff around the design world and share it with
+                            you.</small></p>
+                    <p><input type="text" placeholder="Add your email here" class="form-control flat" /></p>
+                </div>
+
+            </div>
+            <!-- /row -->
+        </div>
+        <!-- /container-bs -->
+    </div>
+    </div>
+    <div id="copyrights">
+        <div class="container">
+            <p>
+                &copy; Copyrights <strong>Kelompok 5</strong>. All Rights Reserved
+            </p>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        function GenerateTable() {
+            //Build an array containing Customer records.
+
+
+            // customers.push(["Id", "Name", "Country", "Customer Id", "Name", "Country"]);
+            // customers.push([1, "John Hammond", "United States"]);
+            // customers.push([2, "Mudassar Khan", "India"]);
+            // customers.push([3, "Suzanne Mathews", "France"]);
+            // customers.push([4, "Robert Schidner", "Russia"]);
+            //Create a HTML Table element.
+            var table = document.createElement("TABLE");
+            table.border = "1";
+            table.className = 'table table-striped table-bordered table-hover';
+
+            //Get the count of columns.
+            var columnCount = customers[0].length;
+
+            //Add the header row.
+            var row = table.insertRow(-1);
+            for (var a = 0; a < columnCount; a++) {
+                if (a > 0) {
+                    var headerCell = document.createElement("TH");
+
+                    headerCell.innerHTML = customers[0][a];
+                    row.appendChild(headerCell);
+                } else {
+                    var headerCell = document.createElement("TH");
+                    headerCell.style.cssText = 'width:10px;';
+
+                    headerCell.innerHTML = customers[0][a];
+                    row.appendChild(headerCell);
+                }
+            }
+
+            //Add the data rows.
+            for (var i = 1; i < customers.length; i++) {
+                row = table.insertRow(-1);
+                for (var j = 0; j < columnCount; j++) {
+                    var cell = row.insertCell(-1);
+                    cell.innerHTML = customers[i][j];
+                }
+            }
+
+            var dvTable = document.getElementById("dvTable");
+            dvTable.innerHTML = "";
+            dvTable.appendChild(table);
+        }
+        GenerateTable()
+    </script>
+
+
+    <script src="https://browser.sentry-cdn.com/5.27.6/bundle.tracing.min.js"
+        integrity="sha384-9Z8PxByVWP+gIm/rTMPn9BWwknuJR5oJcLj+Nr9mvzk8nJVkVXgQvlLGZ9SIFEJF" crossorigin="anonymous">
+    </script>
+    <script>
+        Sentry.init({
+            dsn: "https://8e4ad02f495946f888620f9fb99fd495@o484108.ingest.sentry.io/5536918",
+            release: "tabler@1.0.0-beta3",
+            integrations: [
+                new Sentry.Integrations.BrowserTracing()
+            ],
+
+            tracesSampleRate: 1.0,
+        });
+    </script>
+    <!-- Libs JS -->
+
+    <!-- Tabler Core -->
+    <script src="./js/tabler.min.js?1620587987"></script>
+
+
+    <script src="lib/jquery/jquery.min.js"></script>
+    <script src="lib/bootstrap/js/bootstrap.min.js"></script>
+    <script src="lib/php-mail-form/validate.js"></script>
+
+
+    <!-- Template Main Javascript File -->
+    <script src="js/main.js"></script>
+</body>
+
+</html>
